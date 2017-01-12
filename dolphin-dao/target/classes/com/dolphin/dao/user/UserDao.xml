@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dolphin.dao.user.UserDao">
+    <insert id="add" parameterType="com.dolphin.models.user.User_db">
+        <selectKey keyProperty="id" resultType="long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO `user`(uid, user_name, sex, email) VALUE(#{uid}, #{user_name}, #{sex}, #{email})
+    </insert>
+
+    <select id="getByUid" parameterType="String" resultType="com.dolphin.models.user.User_db">
+        SELECT * FROM `user` WHERE uid = #{uid}
+    </select>
+
+    <update id="update" parameterType="com.dolphin.models.user.User_db">
+        UPDATE `user`
+        <set>
+            <if test="user_name != null">user_name = #{user_name},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="email != null">email = #{email}</if>
+        </set>
+        WHERE uid = #{uid}
+    </update>
+
+    <select id="getById" parameterType="long" resultType="com.dolphin.models.user.User_db">
+        SELECT * FROM `user` WHERE id = #{id}
+    </select>
+</mapper>
