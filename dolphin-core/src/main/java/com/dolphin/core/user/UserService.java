@@ -19,4 +19,12 @@ public interface UserService extends BaseService {
      * @return 业务处理状态码
      */
     int register(User_db user);
+
+    /**
+     * 用户登录
+     *
+     * @param user 用户登录信息
+     * @return 业务处理状态码
+     */
+    int login(User_db user);
 }

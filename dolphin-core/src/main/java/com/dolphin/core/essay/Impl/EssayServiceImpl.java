@@ -6,6 +6,8 @@ import com.dolphin.dao.user.UserDao;
 import com.dolphin.models.essay.Essay;
 import com.dolphin.models.user.User_db;
 
+import java.util.List;
+
 /**
  * 文章业务处理实现类
  * Created on 2017/1/12.
@@ -24,8 +26,8 @@ public class EssayServiceImpl implements EssayService {
     private EssayDao essayDao;
 
     public int submit(Essay essay) {
-        if (dataNull(essay)) return DATA_MISSING;
-        if (dataUnPass(essay)) return DATA_UNPASS;
+        //if (dataNull(essay)) return DATA_MISSING;
+        //if (dataUnPass(essay)) return DATA_UNPASS;
         if (dataConflict(essay)) return DATA_CONFLICT;
         try {
             essayDao.add(essay);
@@ -36,6 +38,52 @@ public class EssayServiceImpl implements EssayService {
     }
 
     @Override
+    public int select(Essay result, Long id) {
+        if (null == result) return DATA_MISSING;
+        try {
+            Essay search_result = essayDao.readById(id);
+            if (null == search_result) return FAIL;
+            else {
+                result.copyOf(search_result);
+                return SUCCESS;
+            }
+        } catch (Exception e) {
+            return SERVER_ERROR;
+        }
+    }
+
+    //TODO:result应该赋值失败。confirm！
+    @Override
+    public int count(Long result) {
+        if (null == result) return DATA_MISSING;
+        try {
+            Long essay_count = essayDao.count();
+            if (null == essay_count) return SERVER_ERROR;
+            else {
+                result = essay_count;
+                return SUCCESS;
+            }
+        } catch (Exception e) {
+            return SERVER_ERROR;
+        }
+    }
+
+    @Override
+    public int selectPage(List<Essay> result_list, Long offset, Integer limit) {
+        if (null == result_list) return DATA_MISSING;
+        try {
+            List<Essay> search_results = essayDao.read(offset, limit);
+            if (null == search_results) return DATA_CONFLICT;
+            else {
+                result_list.addAll(search_results);
+                return SUCCESS;
+            }
+        } catch (Exception e) {
+            return SERVER_ERROR;
+        }
+    }
+
+    /*@Override
     public boolean dataNull(Object data) {
         if (null == data) return true;
         Essay essay = (Essay) data;
@@ -49,7 +97,7 @@ public class EssayServiceImpl implements EssayService {
         Essay essay = (Essay) data;
         if (essay.getTitle().length() > 64 || essay.getAuthor_name().length() > 32) return true;
         return false;
-    }
+    }*/
 
     @Override
     public boolean dataConflict(Object data) {

@@ -30,7 +30,7 @@ public interface EssayDao {
      * @param limit  返回记录行的最大数。limit为-1，则表示到最后一行
      * @return 数据库表中第offset-limit行的记录。limit为-1，则返回地offset-last行的记录。
      */
-    List<Essay> read(@Param("offset") Long offset, @Param("limit") Long limit);
+    List<Essay> read(@Param("offset") Long offset, @Param("limit") Integer limit);
 
     /**
      * 通过id查询文章
@@ -54,4 +54,12 @@ public interface EssayDao {
      * @param essay 修改后的文章。t
      */
     void update(Essay_db essay);
+
+    /**
+     * 返回文章总数。
+     *
+     * @return
+     */
+    //TODO:未实现。
+    Long count();
 }

@@ -5,6 +5,7 @@ package com.dolphin.models.user;
  * 用于用户密码验证
  * 一个对象表示数据库表`user_account`一行记录
  * Created on 2016/9/2.
+ *
  * @author PieceBook
  * @version 1.0
  */
@@ -14,15 +15,15 @@ public class UserAccount {
      */
     private long id;
     /**
-     * 用户唯一标识，最长16位。
+     * 用户唯一标识，最长16位字符。
      */
     private String uid;
     /**
-     * 用户密码，最长16位。
+     * (用户密码 + salt)的SHA256哈希值，64为字符。
      */
     private String password;
     /**
-     * 密码后缀，32位。
+     * 密码后缀，32位字符。
      */
     private String salt;
 

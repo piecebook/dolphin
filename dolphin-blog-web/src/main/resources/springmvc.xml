@@ -27,30 +27,15 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <bean id="idCheck" class="com.pb.server.web.util.IDCheck">
-        <property name="userAccountService">
-            <ref bean="userAccountService"/>
-        </property>
-    </bean>
-    <bean id="userController" class="com.pb.server.web.controller.UserController">
+    <bean id="userController" class="com.dolphin.web.controller.user.UserController">
         <property name="userService">
-            <ref bean="userAccountService"/>
+            <ref bean="userService"/>
         </property>
     </bean>
-    <bean id="friendController" class="com.pb.server.web.controller.FriendsController">
-        <property name="friendsService">
-            <ref bean="friendsService"/>
+    <bean id="essayController" class="com.dolphin.web.controller.essay.EssayController">
+        <property name="essayService">
+            <ref bean="essayService"/>
         </property>
-        <property name="userAccountService">
-            <ref bean="userAccountService"/>
-        </property>
-        <property name="idCheck" ref="idCheck"/>
-    </bean>
-    <bean id="messageController" class="com.pb.server.web.controller.MessageController">
-        <property name="messageService">
-            <ref bean="messageService"/>
-        </property>
-        <property name="idCheck" ref="idCheck"/>
     </bean>
 
 

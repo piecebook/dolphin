@@ -43,5 +43,9 @@
         <property name="mapperInterface" value="com.dolphin.dao.user.UserDao"/>
         <property name="sqlSessionFactory" ref="mySqlSessionFactory"/>
     </bean>
+    <bean id="userAccountDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.dolphin.dao.user.UserAccountDao"/>
+        <property name="sqlSessionFactory" ref="mySqlSessionFactory"/>
+    </bean>
 
 </beans>

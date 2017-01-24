@@ -5,7 +5,7 @@
         <selectKey keyProperty="id" resultType="long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        INSERT INTO `user`(uid, user_name, sex, email) VALUE(#{uid}, #{user_name}, #{sex}, #{email})
+        INSERT INTO `user`(id, uid, user_name, sex, email) VALUE(#{id}, #{uid}, #{user_name}, #{sex}, #{email})
     </insert>
 
     <select id="getByUid" parameterType="String" resultType="com.dolphin.models.user.User_db">

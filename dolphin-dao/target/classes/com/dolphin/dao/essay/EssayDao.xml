@@ -33,4 +33,8 @@
         DELETE * FROM essay WHERE id = #{essay_id}
     </delete>
 
+    <update id="update" parameterType="com.dolphin.models.essay.Essay_db">
+        UPDATE essay SET title = #{title}, text = #{text} WHERE id = #{id}
+    </update>
+
 </mapper>

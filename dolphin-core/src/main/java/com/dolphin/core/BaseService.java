@@ -11,7 +11,7 @@ package com.dolphin.core;
  */
 public interface BaseService {
     /**
-     * 处理成功
+     * 处理流程成功。处理结果也成功。
      */
     int SUCCESS = 20;
     /**
@@ -27,6 +27,10 @@ public interface BaseService {
      */
     int DATA_CONFLICT = 32;
     /**
+     * 处理流程成功，处理结果失败。（处理过程没有发生错误。）
+     */
+    int FAIL = 40;
+    /**
      * 服务器内部错误
      */
     int SERVER_ERROR = 50;
@@ -36,15 +40,16 @@ public interface BaseService {
      *
      * @param data 请求提交的数据
      * @return 数据缺失，返回true。数据完整，返回false。
+     *
      */
-    boolean dataNull(Object data);
+    //boolean dataNull(Object data);
 
     /**
      * 验证请求提交的数据是否符合要求
      * @param data 请求提交的数据
      * @return 数据不合要求，返回true。数据符合，返回false。
      */
-    boolean dataUnPass(Object data);
+    //boolean dataUnPass(Object data);
 
     /**
      * 验证请求提交的数据是否与数据库一致
